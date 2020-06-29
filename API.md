@@ -28,15 +28,12 @@ function Example() {
 
 function MyFields() {
   // Getters & setters for the global form attributes.
-  const values = useFormValues();
-  const errors = useFormErrors();
-  const touched = useFormTouched();
+  const { values, errors, touched } = useFormData();
   const { setValues, setErrors, setTouched } = useFormMutators();
 
   // Getters & setters for field-level attributes (this is better for performance).
-  const [username, setUsername] = useFieldValue('username');
-  const [usernameError, setUsernameError] = useFieldError('username');
-  const [usernameTouched, setUsernameTouched] = useFieldTouched('username');
+  const { value, error, touched } = useFieldData('username');
+  const { setValue, setError, setTouched } = useFieldMutators('username');
 
   return (
     <>
