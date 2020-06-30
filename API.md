@@ -31,6 +31,8 @@ function MyFields() {
   // Getters & setters for field-level attributes (this is better for performance).
   const { value, error, touched } = useFieldData('username');
   const { setValue, setError, setTouched } = useFieldMutators('username');
+  
+  const { fieldKeys, add, remove, addToStart, addAtIndex, swap, move } = useFieldArray('friends');
 
   return (
     <>
@@ -47,6 +49,12 @@ function MyFields() {
           fns: [isValidEmail] 
         }} 
       />
+      {fieldKeys.map((fieldKey) =>
+        <>
+          <Field as="input" name={`${fieldKey}.username`} />
+          <Field as="input" name={`${fieldKey}.email`} />
+        </>
+      )}
     </>
   )
 }
@@ -80,11 +88,11 @@ TODO
 
 TODO
 
-## `FieldArray`
+## `ErrorMessage`
 
 TODO
 
-## `ErrorMessage`
+## `useFieldArray`
 
 TODO
 
