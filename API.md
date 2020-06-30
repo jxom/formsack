@@ -25,14 +25,25 @@ function Example() {
 
 function MyFields() {
   // Getters & setters for the global form attributes.
-  const { values, errors, touched } = useFormData();
-  const { setValues, setErrors, setTouched } = useFormMutators();
-
-  // Getters & setters for field-level attributes (this is better for performance).
-  const { value, error, touched } = useFieldData('username');
-  const { setValue, setError, setTouched } = useFieldMutators('username');
+  const { 
+    getValues, 
+    getErrors, 
+    getTouched,
+    setValues,
+    setErrors,
+    setTouched
+  } = useFormData();
   
   const { fieldKeys, add, remove, addToStart, addAtIndex, swap, move } = useFieldArray('friends');
+  
+  React.useEffect(() => {
+    const values = getValues();
+    const usernameValue = getValues('username');
+   
+    setValues({ username: 'Johnny' });
+    // OR
+    setValues('username', 'Johnny');
+  }, [])
 
   return (
     <>
@@ -97,17 +108,5 @@ TODO
 TODO
 
 ## `useFormData`
-
-TODO
-
-## `useFormMutators`
-
-TODO
-
-## `useFieldData`
-
-TODO
-
-## `useFieldMutators`
 
 TODO
